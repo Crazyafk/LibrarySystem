@@ -46,5 +46,9 @@
 
         $stmt->execute();
         $stmt->closeCursor();
+
+        if($_POST["testdata"] == "yes"){
+            echo("add test data");
+        }
     ?>
 </body>
