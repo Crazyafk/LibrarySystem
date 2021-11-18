@@ -14,7 +14,7 @@
         Surname VARCHAR(20) NOT NULL,
         Forename VARCHAR(20) NOT NULL,
         Password VARCHAR(20) NOT NULL,
-        Role TINYINT(1) NOT NULL
+        Role VARCHAR(1) NOT NULL
         )");
 
         $stmt->execute();
@@ -47,8 +47,43 @@
         $stmt->execute();
         $stmt->closeCursor();
 
+        function newUser($conn, $username, $surname, $forename, $password, $role)
+        {
+            $stmt = $conn->prepare("INSERT INTO TblUsers
+            (UserID, Username, Surname, Forename, Password, Role)VALUES
+            (null, :username, :surname, :forename, :password, :role)");
+
+            $stmt->bindParam(':username',$username);
+            $stmt->bindParam(':surname',$surname);
+            $stmt->bindParam(':forename',$forename);
+            $stmt->bindParam(':password',$password);
+            $stmt->bindParam(':role',$role);
+
+            $stmt->execute();
+            $stmt->closeCursor();
+        }
+        function newBook($conn, $title, $surname, $forename, $isavailable)
+        {
+            $stmt = $conn->prepare("INSERT INTO TblUsers
+            (BookID, Title, Surname, Forename, IsAvailable,)VALUES
+            (null, :title, :surname, :forename, :isavailable)");
+
+            $stmt->bindParam(':title',$title);
+            $stmt->bindParam(':surname',$surname);
+            $stmt->bindParam(':forename',$forename);
+            $stmt->bindParam(':isavailable',$isavailable);
+
+            $stmt->execute();
+            $stmt->closeCursor();
+        }
+
         if($_POST["testdata"] == "yes"){
-            echo("add test data");
+
+            newUser($conn, "tomato", "red", "blue", "password", "A");
+            newUser($conn, "librarian", "aha", "haha", "anotherpassword", "L");
+            newUser($conn, "bookshelf", "daddy", "leather", "ilikeweirdbooks", "M");
+
+            newBook($conn, "")
         }
     ?>
 </body>
