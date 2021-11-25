@@ -6,6 +6,8 @@
     <?php
         include_once("conn.php");
         
+        //Create Tables
+
         $stmt = $conn->prepare("DROP TABLE IF EXISTS TblUsers;
         CREATE TABLE TblUsers
         (
@@ -47,43 +49,19 @@
         $stmt->execute();
         $stmt->closeCursor();
 
-        function newUser($conn, $username, $surname, $forename, $password, $role)
-        {
-            $stmt = $conn->prepare("INSERT INTO TblUsers
-            (UserID, Username, Surname, Forename, Password, Role)VALUES
-            (null, :username, :surname, :forename, :password, :role)");
-
-            $stmt->bindParam(':username',$username);
-            $stmt->bindParam(':surname',$surname);
-            $stmt->bindParam(':forename',$forename);
-            $stmt->bindParam(':password',$password);
-            $stmt->bindParam(':role',$role);
-
-            $stmt->execute();
-            $stmt->closeCursor();
-        }
-        function newBook($conn, $title, $surname, $forename, $isavailable)
-        {
-            $stmt = $conn->prepare("INSERT INTO TblUsers
-            (BookID, Title, Surname, Forename, IsAvailable,)VALUES
-            (null, :title, :surname, :forename, :isavailable)");
-
-            $stmt->bindParam(':title',$title);
-            $stmt->bindParam(':surname',$surname);
-            $stmt->bindParam(':forename',$forename);
-            $stmt->bindParam(':isavailable',$isavailable);
-
-            $stmt->execute();
-            $stmt->closeCursor();
-        }
-
         if($_POST["testdata"] == "yes"){
+
+            include_once("functions.php");
 
             newUser($conn, "tomato", "red", "blue", "password", "A");
             newUser($conn, "librarian", "aha", "haha", "anotherpassword", "L");
             newUser($conn, "bookshelf", "daddy", "leather", "ilikeweirdbooks", "M");
 
-            newBook($conn, "")
+            newBook($conn, "lorem ipsum", "know", "i do not", "Y");
+            newBook($conn, "survive this", "dudafa", "waripamo-owei", "N");
+
+            newLoan($conn, 2, 1, "2021-11-27", "+3 months", null);
+            newLoan($conn, 0, 0, "2021-11-24", "Today", "Today");
         }
     ?>
 </body>
