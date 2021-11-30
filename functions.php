@@ -41,9 +41,9 @@
             (LoanID, UserID, BookID, StartDate, DueDate, EndDate)VALUES
             (null, :userid, :bookid, :startdate, :duedate, :enddate)");
 
-            $start = strtotime($StartDate);
-            $due = strtotime($DueDate);
-            $end = strtotime($EndDate);
+            $start = strtotime($StartDate) + 3600; //I have no idea why, but adding an extra hour makes this work :/
+            $due = strtotime($DueDate) + 3600;
+            $end = strtotime($EndDate) + 3600;
 
             echo gmdate("F j, Y, g:i a", $start);
             echo ("<br>");
