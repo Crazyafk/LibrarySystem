@@ -45,9 +45,6 @@
             $due = strtotime($DueDate) + 3600;
             $end = strtotime($EndDate) + 3600;
 
-            echo gmdate("F j, Y, g:i a", $start);
-            echo ("<br>");
-
             $stmt->bindParam(':userid',$userID);
             $stmt->bindParam(':bookid',$bookID);
             $stmt->bindParam(':startdate',$start);
