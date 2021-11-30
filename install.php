@@ -41,9 +41,9 @@
         LoanID INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
         UserID INT(4) NOT NULL,
         BookID INT(4) NOT NULL,
-        StartDate DATE NOT NULL,
-        DueDate DATE NOT NULL,
-        EndDate DATE
+        StartDate INT(10) NOT NULL,
+        DueDate INT(10) NOT NULL,
+        EndDate INT(10)
         )");
 
         $stmt->execute();
