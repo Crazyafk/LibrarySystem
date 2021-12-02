@@ -19,7 +19,27 @@
         }
         catch(PDOException $e)
         {
-            echo "Connection failed (Press F to pay respects) Error Msg: ".$e->getMessage();
-        }
+            if($e->getMessage() == "SQLSTATE[HY000] [1049] Unknown database 'librarydb'")
+            {
+                //--------------Create New Database---------------
+                echo "create new db";
+
+                //Create Connection
+                $conn = new mysqli($servername, $username, $password);
+                //Check Connection
+                if($conn->connect_error){
+                    die("Connection failed: ".$conn->connect_error);
+                }
+
+                //Create Database
+                $sql = "CREATE DATABASE librarydb";
+                if($conn->query($sql) === TRUE){
+                    echo "Database created successfully";
+                }else{
+                    echo "Error creating database: ".$conn->error;
+                }
+            }
+            else{echo "Connection failed: ".$e->getMessage();}
+                }
     ?>
 </body>
