@@ -3,6 +3,13 @@
     <title>Hell's Library</title>
 </head>
 <body>
+    <?php
+        session_start();  
+        if (!isset($_SESSION['name'])) 
+        {    
+            header("Location:login.php"); 
+        } 
+    ?>
     Reinstall Tables:
     <form action="install.php" method="POST">
         Include Test Data:
