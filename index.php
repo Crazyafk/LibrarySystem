@@ -12,6 +12,6 @@
 
         include_once("conn.php");
         echo("welcome to the internet you smelly little potato");
+        echo("<a href='admin.php'>Super Secret Admin Link</a>");
     ?>
-    <a href="admin.php">Super Secret Admin Link</a>
 </body>

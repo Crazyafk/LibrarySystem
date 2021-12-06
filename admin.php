@@ -10,9 +10,14 @@
             header("Location:login.php"); 
         }
         include_once("functions.php");
-        if(getRole($conn,$_SESSION['name']) != "A")
+        $role = getRole($conn,$_SESSION['name']);
+        echo("<br>");
+        echo($role);
+        echo("<br>");
+        if(getRole($conn,$role != "A"))
         {
-            header("Location:login.php"); 
+            header("Location:accessdenied.php"); 
+
         } 
     ?>
     Reinstall Tables:
