@@ -11,10 +11,7 @@
         }
         include_once("functions.php");
         $role = getRole($conn,$_SESSION['name']);
-        echo("<br>");
-        echo($role);
-        echo("<br>");
-        if(getRole($conn,$role != "A"))
+        if($role != "A")
         {
             header("Location:accessdenied.php"); 
 
