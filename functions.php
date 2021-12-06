@@ -58,5 +58,16 @@
             $stmt->execute();
             $stmt->closeCursor();
         }
+        function getRole($conn, $username)
+        {
+            $stmt = $conn->prepare("SELECT * FROM TblUsers WHERE Username = :username;");
+            $stmt->bindParam(':username',$_POST['Username']);
+            $stmt->execute();
+
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+                return($row["Role"]);
+            }
+        }
     ?>
 </body>

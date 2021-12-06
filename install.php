@@ -9,7 +9,11 @@
         {    
             header("Location:login.php"); 
         } 
-        include_once("conn.php");
+        include_once("functions.php");
+        if(getRole($conn,$_SESSION['name']) != "A")
+        {
+            header("Location:login.php"); 
+        }
         
         //Create Tables
 
