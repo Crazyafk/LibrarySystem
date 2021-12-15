@@ -72,7 +72,7 @@
         function echoNavbar($conn)
         {
             $role = getRole($conn, $_SESSION['name']);
-            
+
             echo('<nav class="navbar navbar-expand-sm bg-dark md-5">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -81,17 +81,20 @@
                 <li class="nav-item">
                     <a class="nav-link" href="login.php">Login with a new account</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="logout.php">Logout</a>
+                </li>
                 ');
                 if($role == "A"){
                     echo("
                         <li class='nav-item'>
-                            <a class='nav-link' href='admin.php'>Admin Link</a>
+                            <a class='nav-link' href='admin.php'>Admin Page</a>
                         </li>
                     ");
                 }if($role == "A" || $role == "L"){
                     echo("
                         <li class='nav-item'>
-                            <a class='nav-link' href='librarian.php'>Librarian Link</a>
+                            <a class='nav-link' href='librarian.php'>Librarian Page</a>
                         </li>
                     ");
                 }
