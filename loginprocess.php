@@ -16,7 +16,10 @@
 
         while($row = $stmt->fetch(PDO::FETCH_ASSOC))
         {
-            if($row['Password']==$_POST['Pword']){
+            $hashed = $row['Password'];
+            $attempt = $_POST['Pword'];
+            
+            if(password_verify($attempt,$hashed)){
                 $userexistsflag = true;
                 $_SESSION['name']=$row["Username"]; 
                 header('Location: index.php');

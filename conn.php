@@ -5,12 +5,12 @@
 <body>
     <?php
         $servername = "localhost";
-        $username = "root";
-        $password = "";
+        $db_username = "root";
+        $db_password = "";
         $dbname = "librarydb";
 
         try{
-            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+            $conn = new PDO("mysql:host=$servername;dbname=$dbname", $db_username, $db_password);
 
             //set PDO error mode to exception
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

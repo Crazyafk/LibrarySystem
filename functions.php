@@ -12,10 +12,12 @@
             (UserID, Username, Surname, Forename, Password, Role)VALUES
             (null, :username, :surname, :forename, :password, :role)");
 
+            $hashed_password = password_hash($password, PASSWORD_DEFAULT); 
+
             $stmt->bindParam(':username',$username);
             $stmt->bindParam(':surname',$surname);
             $stmt->bindParam(':forename',$forename);
-            $stmt->bindParam(':password',$password);
+            $stmt->bindParam(':password',$hashed_password);
             $stmt->bindParam(':role',$role);
 
             $stmt->execute();
