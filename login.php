@@ -8,8 +8,15 @@
 </head>
 <body>
     <?php
-        include_once("conn.php");
+        include_once("functions.php");
         session_start(); 
+
+        if(!isset($_SESSION['name'])) 
+        {    
+            echo("<div class='alert alert-info'>Please Login</div>");
+        }else{
+            echoNavbar($conn);
+        }
 
         if($_SESSION["loginfailurereason"] != null)
         {
