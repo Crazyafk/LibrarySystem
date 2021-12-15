@@ -69,5 +69,33 @@
                 return($row["Role"]);
             }
         }
+        function echoNavbar($conn)
+        {
+            $role = getRole($conn, $_SESSION['name']);
+            
+            echo('<nav class="navbar navbar-expand-sm bg-dark md-5">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="index.php">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.php">Login with a new account</a>
+                </li>
+                ');
+                if($role == "A"){
+                    echo("
+                        <li class='nav-item'>
+                            <a class='nav-link' href='admin.php'>Admin Link</a>
+                        </li>
+                    ");
+                }if($role == "A" || $role == "L"){
+                    echo("
+                        <li class='nav-item'>
+                            <a class='nav-link' href='librarian.php'>Librarian Link</a>
+                        </li>
+                    ");
+                }
+            echo("</ul></nav>");
+        }
     ?>
 </body>

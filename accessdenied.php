@@ -15,30 +15,7 @@
         } 
         include_once("functions.php");
         $role = getRole($conn,$_SESSION['name']);
-    //NAVBAR
+        echoNavbar($conn);
     ?>
-    <nav class="navbar navbar-expand-sm bg-dark md-5">
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link text-white" href="index.php">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="login.php">Login with a new account</a>
-            </li>
-            <?php
-            if($role == "A"){
-                echo("
-                    <li class='nav-item'>
-                        <a class='nav-link' href='admin.php'>Admin Link</a>
-                    </li>
-                ");
-            }if($role == "A" || $role == "L"){
-                echo("
-                    <li class='nav-item'>
-                        <a class='nav-link' href='librarian.php'>Librarian Link</a>
-                    </li>
-                ");
-            }
-            ?>
-        </ul></nav>
+    <h1>Access Denied!</h1>
 </body>
