@@ -18,7 +18,7 @@
             echoNavbar($conn);
         }
 
-        if($_SESSION["loginfailurereason"] != null)
+        if(isset($_SESSION["loginfailurereason"]))
         {
             echo("<div class='alert alert-danger'>".$_SESSION["loginfailurereason"]."</div>");
 
