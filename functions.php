@@ -144,5 +144,16 @@
             $stmt->bindParam(":bookID",$bookID);
             $stmt->execute();
         }
+        function getBookInLoan($conn, $loanID)
+        {
+            $stmt = $conn->prepare("SELECT * FROM TblLoans WHERE LoanID = :loanID;");
+            $stmt->bindParam(':loanID',$loanID);
+            $stmt->execute();
+
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+                return($row["BookID"]);
+            }
+        }
     ?>
 </body>

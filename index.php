@@ -24,4 +24,20 @@
         <input type="text" name="searchterm"><br>
         <input type="submit" value="Search!">
     </form>
+
+    Books you need to return soonish please:
+    <form action="return.php" method="POST">
+    <?php
+        $userID = getUserID($conn,$_SESSION['name']);
+
+        $stmt = $conn->prepare("SELECT * FROM TblLoans INNER JOIN TblBooks ON TblLoans.BookID = TblBooks.BookID WHERE UserID = :userID AND EndDate = 0");
+        $stmt->bindParam(":userID",$userID);
+        $stmt->execute();
+
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+            echo($row["BookID"].": ".$row["Title"]." By ".$row["AuthorForename"]." ".$row["AuthorSurname"]."<input type='radio' name='loanID' value='".$row["LoanID"]."'><br>");
+        }
+    ?>
+    <input type="submit" value="Return">
 </body>
