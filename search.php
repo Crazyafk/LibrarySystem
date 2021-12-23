@@ -23,9 +23,23 @@
         $stmt->bindParam(":searchterm",$_POST["searchterm"]);
         $stmt->execute();
 
+        $unavailable = array();
+
+        Available Books Matching Search:
         while($row = $stmt->fetch(PDO::FETCH_ASSOC))
         {
-            echo($row["BookID"].": ".$row["Title"]." By ".$row["AuthorForename"]." ".$row["AuthorSurname"].". Is available: ".$row["IsAvailable"]);
+            if($row["IsAvailable"] == "Y")
+            {
+                echo($row["BookID"].": ".$row["Title"]." By ".$row["AuthorForename"]." ".$row["AuthorSurname"]);
+            }else{
+                array_push($unavailable, $row);
+            }
+        }
+
+        Unavailable Books Matching Search:
+        foreach($unavailable as $row)
+        {
+            echo($row["BookID"].": ".$row["Title"]." By ".$row["AuthorForename"]." ".$row["AuthorSurname"]);
         }
     ?>
 
