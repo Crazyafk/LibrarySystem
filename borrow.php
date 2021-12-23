@@ -19,6 +19,6 @@
 
         echoNavbar($conn);
 
-        newLoan($conn, getUserID($_SESSION['name']), $_POST['bookID'], "now", $loantime, null);
+        newLoan($conn, getUserID($conn,$_SESSION['name']), $_POST['bookID'], "now", $loantime, null);
     ?>
 </body>
