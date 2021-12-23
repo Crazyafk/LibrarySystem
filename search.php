@@ -25,7 +25,7 @@
 
         while($row = $stmt->fetch(PDO::FETCH_ASSOC))
         {
-            echo($row["Title"]);
+            echo($row["BookID"].": ".$row["Title"]." By ".$row["AuthorForename"]." ".$row["AuthorSurname"].". Is available: ".$row["IsAvailable"]);
         }
     ?>
 
