@@ -19,27 +19,34 @@
 
         echoNavbar($conn);
 
-        $stmt = $conn->prepare("SELECT * FROM TblBooks WHERE BookID = :searchterm OR Title = :searchterm OR AuthorSurname = :searchterm OR AuthorForename = :searchterm");
-        $stmt->bindParam(":searchterm",$_POST["searchterm"]);
-        $stmt->execute();
+        $searchterm = $_POST["searchterm"];
 
+        if($searchterm == ""){ //If search is empty, list all books
+            $stmt = $conn->prepare("SELECT * FROM TblBooks");
+            $stmt->execute();
+        }else{
+            $stmt = $conn->prepare("SELECT * FROM TblBooks WHERE BookID = :searchterm OR Title = :searchterm OR AuthorSurname = :searchterm OR AuthorForename = :searchterm");
+            $stmt->bindParam(":searchterm",$searchterm);
+            $stmt->execute();
+        }
+        
         $unavailable = array();
 
-        Available Books Matching Search:
+        echo("<br><strong>Available Books Matching Search:</strong><br><br>");
         while($row = $stmt->fetch(PDO::FETCH_ASSOC))
         {
             if($row["IsAvailable"] == "Y")
             {
-                echo($row["BookID"].": ".$row["Title"]." By ".$row["AuthorForename"]." ".$row["AuthorSurname"]);
+                echo($row["BookID"].": ".$row["Title"]." By ".$row["AuthorForename"]." ".$row["AuthorSurname"]."<br>");
             }else{
                 array_push($unavailable, $row);
             }
         }
 
-        Unavailable Books Matching Search:
+        echo("<br><strong>Unavailable Books Matching Search:</strong><br><br>");
         foreach($unavailable as $row)
         {
-            echo($row["BookID"].": ".$row["Title"]." By ".$row["AuthorForename"]." ".$row["AuthorSurname"]);
+            echo($row["BookID"].": ".$row["Title"]." By ".$row["AuthorForename"]." ".$row["AuthorSurname"]."<br>");
         }
     ?>
 

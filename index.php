@@ -19,7 +19,7 @@
 
         echoNavbar($conn);
     ?>
-    Enter Book ID OR Title OR Surname OR Forename Exactly: This search isn't very sophisticated
+    Enter Book ID OR Title OR Surname OR Forename Exactly: This search isn't very sophisticated.<br>Or Leave blank to list all books
     <form action="search.php" method="POST">
         <input type="text" name="searchterm"><br>
         <input type="submit" value="Search!">
