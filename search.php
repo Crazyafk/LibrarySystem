@@ -32,16 +32,18 @@
         
         $unavailable = array();
 
-        echo("<br><strong>Available Books Matching Search:</strong><br><br>");
+        echo("<br><strong>Available Books Matching Search:</strong><br><br>
+        <form action='borrow.php' method='POST'>");
         while($row = $stmt->fetch(PDO::FETCH_ASSOC))
         {
             if($row["IsAvailable"] == "Y")
             {
-                echo($row["BookID"].": ".$row["Title"]." By ".$row["AuthorForename"]." ".$row["AuthorSurname"]."<br>");
+                echo($row["BookID"].": ".$row["Title"]." By ".$row["AuthorForename"]." ".$row["AuthorSurname"]."<input type='radio' name='bookID' value='".$row["BookID"]."'><br>");
             }else{
                 array_push($unavailable, $row);
             }
         }
+        echo("<input type='submit' value='Borrow'>");
 
         echo("<br><strong>Unavailable Books Matching Search:</strong><br><br>");
         foreach($unavailable as $row)

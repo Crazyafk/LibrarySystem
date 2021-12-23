@@ -6,6 +6,9 @@
     <?php
         include_once("conn.php");
 
+        //Common variables
+        $loantime = "+1 month";
+
         function newUser($conn, $username, $surname, $forename, $password, $role)
         {
             $stmt = $conn->prepare("INSERT INTO TblUsers
@@ -69,6 +72,17 @@
             while($row = $stmt->fetch(PDO::FETCH_ASSOC))
             {
                 return($row["Role"]);
+            }
+        }
+        function getUserID($conn, $username)
+        {
+            $stmt = $conn->prepare("SELECT * FROM TblUsers WHERE Username = :username;");
+            $stmt->bindParam(':username',$username);
+            $stmt->execute();
+
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+            {
+                return($row["UserID"]);
             }
         }
         function echoNavbar($conn)
