@@ -129,14 +129,14 @@
                 }
             }
 
-            $stmt = $conn->prepare("SELECT * FROM TblLoans WHERE BookID = :bookID AND NOT EndDate = 0");
+            $stmt = $conn->prepare("SELECT * FROM TblLoans WHERE BookID = :bookID AND EndDate = 0");
             $stmt->bindParam(":bookID",$bookID);
             $stmt->execute();
 
-            $isavailable = "N";
+            $isavailable = "Y";
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)) //there is absolutely a better way to do this, but i can't be arsed to figure it out right now
             {
-                $isavailable = "Y";
+                $isavailable = "N";
             }
 
             $stmt = $conn->prepare("UPDATE TblBooks SET IsAvailable = :isAvailable WHERE BookID = :bookID");
