@@ -116,5 +116,33 @@
                 }
             echo("</ul></nav>");
         }
+        function updateAvailability($conn, $bookID = null)
+        {
+            if($bookID == null) //apply to all using a bit of light recursion
+            {
+                $stmt = $conn->prepare("SELECT * FROM TblBooks");
+                $stmt->execute();
+
+                while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+                {
+                    updateAvailability($conn, $row["BookID"]);
+                }
+            }
+
+            $stmt = $conn->prepare("SELECT * FROM TblLoans WHERE BookID = :bookID AND NOT EndDate = 0");
+            $stmt->bindParam(":bookID",$bookID);
+            $stmt->execute();
+
+            $isavailable = "N";
+            while($row = $stmt->fetch(PDO::FETCH_ASSOC)) //there is absolutely a better way to do this, but i can't be arsed to figure it out right now
+            {
+                $isavailable = "Y";
+            }
+
+            $stmt = $conn->prepare("UPDATE TblBooks SET IsAvailable = :isAvailable WHERE BookID = :bookID");
+            $stmt->bindParam(":isAvailable",$isavailable);
+            $stmt->bindParam(":bookID",$bookID);
+            $stmt->execute();
+        }
     ?>
 </body>

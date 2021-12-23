@@ -20,5 +20,6 @@
         echoNavbar($conn);
 
         newLoan($conn, getUserID($conn,$_SESSION['name']), $_POST['bookID'], "now", $loantime, null);
+        updateAvailability($conn, $_POST['bookID']);
     ?>
 </body>

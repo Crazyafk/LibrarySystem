@@ -68,10 +68,12 @@
             newUser($conn, "bookshelf", "daddy", "leather", "ilikeweirdbooks", "M");
 
             newBook($conn, "lorem ipsum", "know", "i do not", "Y");
-            newBook($conn, "survive this", "dudafa", "waripamo-owei", "N");
+            newBook($conn, "survive this", "dudafa", "waripamo-owei", "Y");
 
-            newLoan($conn, 2, 1, "2021-11-27", "+3 months", null);
-            newLoan($conn, 0, 0, "2021-11-24", "Today", "Today");
+            newLoan($conn, 3, 2, "2021-11-27", "+3 months", null);
+            newLoan($conn, 1, 1, "2021-11-24", "Today", "Today");
+
+            updateAvailability($conn);
         }
     ?>
 </body>
