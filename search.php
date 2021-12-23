@@ -18,9 +18,15 @@
         include_once("functions.php");
 
         echoNavbar($conn);
+
+        $stmt = $conn->prepare("SELECT * FROM TblBooks WHERE BookID = :searchterm OR Title = :searchterm OR AuthorSurname = :searchterm OR AuthorForename = :searchterm");
+        $stmt->bindParam(":searchterm",$_POST["searchterm"]);
+        $stmt->execute();
+
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC))
+        {
+            echo($row["Title"]);
+        }
     ?>
-    <form action="search.php" method="POST">
-        <input type="text" name="searchterm"><br>
-        <input type="submit" value="Search!">
-    </form>
+
 </body>
