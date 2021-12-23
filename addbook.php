@@ -8,26 +8,20 @@
 </head>
 <body>
     <?php
+        //PREP
         session_start();  
         if (!isset($_SESSION['name'])) 
         {    
             header("Location:login.php"); 
-        }
+        } 
+
         include_once("functions.php");
         $role = getRole($conn,$_SESSION['name']);
         if($role != "A" && $role != "L")
         {
             header("Location:accessdenied.php"); 
         } 
-        echoNavbar($conn);
+        
+        newBook($conn, $_POST["title"], $_POST["Surname"], $_POST["Forename"], "Y");
     ?>
-
-    Librarian Page or something
-    Add New Books:
-    <form action="addbook.php" method="POST">
-        <input type="text" name="title">Title
-        <input type="text" name="Forename">Author Forename
-        <input type="text" name="Surname">Author Surname
-        <input type="submit" value="Add">
-    </form>
 </body>
