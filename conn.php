@@ -1,8 +1,3 @@
-<!DOCTYPE HTML>
-<head>
-    <title>Hell's Library</title>
-</head>
-<body>
     <?php
         #options: localhost, fdb34.awardspace.net
         $servername = "fdb34.awardspace.net";
@@ -53,4 +48,3 @@
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
     ?>
-</body>

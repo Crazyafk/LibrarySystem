@@ -1,9 +1,4 @@
-<!DOCTYPE HTML>
-<head>
-    <title>Hell's Library</title>
-</head>
-<body>
-    <?php
+<?php
         session_start();  
         if (!isset($_SESSION['name'])) 
         {    
@@ -76,4 +71,3 @@
             updateAvailability($conn);
         }
     ?>
-</body>

@@ -1,9 +1,4 @@
-<!DOCTYPE HTML>
-<head>
-    <title>Hell's Library</title>
-</head>
-<body>
-    <?php
+<?php
         include_once("conn.php");
         session_start(); 
         array_map("htmlspecialchars",$_POST);
@@ -35,5 +30,4 @@
             header('Location: login.php');
         }
         $conn = null;
-    ?>
-</body>
+?>
