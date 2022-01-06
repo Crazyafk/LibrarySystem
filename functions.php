@@ -1,8 +1,4 @@
-<!DOCTYPE HTML>
-<head>
-    <title>Hell's Library</title>
-</head>
-<body>
+
     <?php
         include_once("conn.php");
 
@@ -156,4 +152,3 @@
             }
         }
     ?>
-</body>
